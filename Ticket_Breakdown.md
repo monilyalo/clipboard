@@ -23,11 +23,11 @@ This will not break the core system
 
 ## 1. Create an endpoint for Facilities to save their own custom ids for each Agent.
 
-# acceptance criteria, time/effort estimates: (2 days)
+## acceptance criteria, time/effort estimates: (2 days)
 -Create an endpoint that allows custom agent id for facilities.
 -Make changes in database that it can persists the data
 
-# Implementation:
+## Implementation:
 -Create an function in App as saveCustomAgentId(). Inputs: facility_id, agent_id, custom_agent_id_by_facility
 -Add a new table in database as Facility_Agents(facility_id, agent_id, custom_agent_id_by_facility).
 -facility_id will be foreign key to Facilities table.
@@ -37,10 +37,10 @@ This will not break the core system
 
 ## 2. Changes in getShiftsByFacility() function 
 
-# acceptance criteria, time/effort estimates: (1 day)
+## acceptance criteria, time/effort estimates: (1 day)
 - getShiftsByFacility should return custom_agent_id (in meta data) instead of agent_id, but all other details from other tables will be continued to be quered with old agent id
 
-# Implementation:
+## Implementation:
 - Make changes in select query by now also joining on new table of Facility_Agents.
 - Replace the key in final JSON object (agent_id with custom_agent_id_by_facility) so existing system does not break.
 - Equivalent test cases to be written
@@ -49,7 +49,7 @@ This will not break the core system
 ## 3. Changes in generateReport() function: (1 day)
 - generateReport should use existing agent_id, but provide new custom_agent_id in the PDF report for compliance
 
-# Implementation:
+## Implementation:
 - Make changes in select query by now also joining on new table of Facility_Agents.
 - Replace the key in PDF (agent_id with custom_agent_id_by_facility).
 - Equivalent test cases to be written.
